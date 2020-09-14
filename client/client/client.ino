@@ -1,3 +1,10 @@
+/*
+ * Firecracker-lighter
+ * Copyright 2020 a5768549
+ *
+ * GitHub Project：https://github.com/a5768549/Firecracker-lighter
+ */
+
 #include "config.h"
 #include "init.h"
 #include "post.h"
