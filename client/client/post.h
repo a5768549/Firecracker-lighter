@@ -1,11 +1,10 @@
-#include <HTTPClient.h>
 #include <ArduinoJson.h>
 
 String inData;
 
 //目前有BUG，內網無法使用，請用ngrok內網穿透後再使用。
-char server[] = "644ecbcb66fa.ngrok.io"; 
-String host   = "644ecbcb66fa.ngrok.io";
+char server[] = "projectgroup.team"; 
+String host   = "projectgroup.team";
 String Device = "1";
 
 WiFiClient client;
@@ -19,8 +18,6 @@ void post_status(int _status)
 
   String json;
   serializeJson(post_data, json);
-
-  client.flush();
 
   if (client.connect(server, 80)) 
   {
@@ -59,6 +56,6 @@ String get_time()
     client.println();
     client.print  (json);
     client.println("Connection: close");
-    delay(10);
+    delay(100);
   }
 }

@@ -3,6 +3,7 @@ header("Content-Type: application/json; charset=utf8");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 header("Access-Control-Allow-Headers: Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization");
+date_default_timezone_set("Asia/Taipei");
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(204);
@@ -23,7 +24,7 @@ $mysql_conn_password = "Aa970236";
 
 /** @var PDO mysql 連線 */
 $mysql_conn = new PDO(
-    "mysql:host=$mysql_conn_hostname;dbname=$mysql_conn_dbname;charset=utf8",
+    "mysql:host=$mysql_conn_host;dbname=$mysql_conn_dbname;charset=utf8",
     $mysql_conn_account,
     $mysql_conn_password
 );

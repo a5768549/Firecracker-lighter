@@ -4,7 +4,7 @@
  *
  * GitHub Project：https://github.com/a5768549/Firecracker-lighter
  */
-
+ 
 #include "config.h"
 #include "init.h"
 #include "post.h"
@@ -17,6 +17,11 @@ void setup()
     delay(100); 
   }
   Serial.println("Wi-Fi連線成功");
+
+  timer0.begin();
+  timer0.start(1000, LTIMER_REPEAT_MODE, _callback0, NULL);
+  rtc.clockEnable(true);
+  irrecv.enableIRIn();
 
   while (!rtc.begin()) 
   {
@@ -48,11 +53,11 @@ void loop()
     irrecv.resume();
   }
 
-  while (client.available()) 
+  while (client.connected() || client.available()) 
   {
     char thisChar = client.read();
     inData += thisChar;
-
+    
     if (thisChar == '\n')
     {
       inData = "";          
@@ -76,7 +81,16 @@ void loop()
       char buf3[50];
       format_time.toCharArray(buf3, 50);
 
-      if (strcmp(buf2, buf3) < 0) 
+      if(inData == "0000-00-00 00:00:0")
+      {
+        Serial.println("未設定時間");
+      }
+      else if(inData == "2000-01-01 00:00:0")
+      {
+        Serial.println("網站觸發");
+        flag = 1;
+      }
+      else if(strcmp(buf2, buf3) < 0) 
       {
         Serial.println("時間已到！");
         flag = 1;
@@ -87,5 +101,5 @@ void loop()
       
   }
 
-  delay(100);
+  delay(500);
 }

@@ -13,8 +13,8 @@ $mysql_conn_account = "root";
 $mysql_conn_password = "Aa970236";
 
 /** @var PDO mysql 連線 */
-$mysql_conn = new PDO(
-    "mysql:host=$mysql_conn_hostname;dbname=$mysql_conn_dbname;charset=utf8",
+$con = new PDO(
+    "mysql:host=$mysql_conn_host;dbname=$mysql_conn_dbname;charset=utf8",
     $mysql_conn_account,
     $mysql_conn_password
 );

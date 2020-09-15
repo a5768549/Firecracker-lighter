@@ -11,6 +11,25 @@
               color: #FFF;
               background-color: #333;
             }
+
+            button {
+                width: 5em;
+                height: 2.5em;
+                border:0;
+                background-color:#003C9D;
+                color:#fff;
+                border-radius:10px;
+                cursor:pointer;
+            }
+
+            button:hover {
+                color:#003C9D;
+                background-color:#fff;
+            }
+
+            .burn_button {
+                background-color:red;
+            }
         </style>
     </head>
     <body>
@@ -18,28 +37,38 @@
             <div class="row">
                 <div class="col">
                     <div>
-                        <div class="row"><h1>一號位</h1></div>
+                        <div class="row"><h1>一號機</h1></div>
                         <div class="row"><img /></div>
                         <div class="row">
                             目前設定時間：<input id="time1" type="datetime-local" name="bdaytime">
                         </div>
+                        <div class="row">
+                            <div class="col"><button id="timeset1">更改</button></div>
+                            <div class="col"><button id="timecancel1">取消</button></div>
+                        </div>
                         <div id="status1" class="row"></div>
                         <div class="row">
-                            <button>點燃</button>
+                            <div class="col"><button class="burn_button" id="burn1">點燃</button></div>
+                            <div class="col"></div>
                         </div>
 
                     </div>
                 </div>
                 <div class="col">
                     <div>
-                        <div class="row"><h1>二號位</h1></div>
+                        <div class="row"><h1>二號機</h1></div>
                         <div class="row"><img /></div>
                         <div class="row">
                             目前設定時間：<input id="time2" type="datetime-local" name="bdaytime">
                         </div>
+                        <div class="row">
+                            <div class="col"><button id="timeset2">更改</button></div>
+                            <div class="col"><button id="timecancel2">取消</button></div>
+                        </div>
                         <div id="status2" class="row"></div>
                         <div class="row">
-                            <button>點燃</button>
+                            <div class="col"><button class="burn_button" id="burn2">點燃</button></div>
+                            <div class="col"></div>
                         </div>
                     </div>
                 </div>
