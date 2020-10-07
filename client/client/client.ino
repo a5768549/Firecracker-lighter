@@ -39,7 +39,7 @@ void setup()
 
 void loop()
 {
-  //get_time();   //向伺服器取得目前設定點燃時間or指令(測試時請註解)
+  get_time();   //向伺服器取得目前設定點燃時間or指令(測試時請註解)
   count += 1;
 
   float t = dht.readTemperature();
