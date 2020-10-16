@@ -9,7 +9,7 @@
         <style>
             body {
               color: #FFF;
-              background-color: #333;
+              background-color: #444;
             }
 
             button {
@@ -33,21 +33,21 @@
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class="container" style="padding-top: 20px;">
             <div class="row">
                 <div class="col">
                     <div>
                         <div class="row"><h1>一號機</h1></div>
-                        <div class="row"><img /></div>
-                        <div class="row">
+                        <div class="row"><img src="./img/img_nofire.png"/></div>
+                        <div class="row" style="padding-top: 30px;">
                             目前設定時間：<input id="time1" type="datetime-local" name="bdaytime">
                         </div>
-                        <div class="row">
+                        <div class="row" style="padding-top: 20px;">
                             <div class="col"><button id="timeset1">更改</button></div>
                             <div class="col"><button id="timecancel1">取消</button></div>
                         </div>
-                        <div id="status1" class="row"></div>
-                        <div class="row">
+                        <div id="status1" class="row" style="padding-top: 20px;"></div>
+                        <div class="row" style="padding-top: 10px;">
                             <div class="col"><button class="burn_button" id="burn1">點燃</button></div>
                             <div class="col"></div>
                         </div>
@@ -57,24 +57,22 @@
                 <div class="col">
                     <div>
                         <div class="row"><h1>二號機</h1></div>
-                        <div class="row"><img /></div>
-                        <div class="row">
+                        <div class="row"><img src="./img/img_nofire.png"/></div>
+                        <div class="row" style="padding-top: 30px;">
                             目前設定時間：<input id="time2" type="datetime-local" name="bdaytime">
                         </div>
-                        <div class="row">
+                        <div class="row" style="padding-top: 20px;">
                             <div class="col"><button id="timeset2">更改</button></div>
                             <div class="col"><button id="timecancel2">取消</button></div>
                         </div>
-                        <div id="status2" class="row"></div>
-                        <div class="row">
+                        <div id="status2" class="row" style="padding-top: 20px;"></div>
+                        <div class="row" style="padding-top: 10px;">
                             <div class="col"><button class="burn_button" id="burn2">點燃</button></div>
                             <div class="col"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -82,9 +80,10 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function() 
+            {
               homePageInit()
             });
-          </script>
+        </script>
     </body>
 </html>

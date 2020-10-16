@@ -125,3 +125,4 @@ function homePageInit()
     burn1.onclick = function() {burn('1')};
     burn2.onclick = function() {burn('2')};
 }
+
