@@ -28,7 +28,7 @@ void _callback0(void *usr_data)
   int(sec)  < 10 ? format_sec  = "0"  + String(sec)  : format_sec  = String(sec);
 
   format_time = String(year) + "-" + format_mon + "-" + format_day + " " + format_hour + ":" + format_min + ":" + format_sec;
-  Serial.println("local time:" + format_time);
+  //Serial.println("local time:" + format_time);
 
   if(btn_timer_enable == 1)
   {
@@ -37,6 +37,15 @@ void _callback0(void *usr_data)
     if(btn_timer_sec == 0)
     {
       flag = 1;
+      uint8_t data[] = { 0xff, 0xff, 0xff, 0xff };
+      data[0] = display.encodeDigit(0);
+      data[1] = display.encodeDigit(0); 
+      data[2] = display.encodeDigit(0);
+      data[3] = display.encodeDigit(0);
+      
+      display.setSegments(data);
+      btn_timer_enable = 0;
+      btn_timer = 0;
     }
 
     int min1 = (btn_timer_sec / 60) / 10;

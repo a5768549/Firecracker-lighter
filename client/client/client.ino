@@ -34,18 +34,31 @@ void setup()
   
   digitalWrite(trigger,HIGH);
   display.setBrightness(0x0f);
+
+  uint8_t data[] = { 0xff, 0xff, 0xff, 0xff };
+  data[0] = display.encodeDigit(0);
+  data[1] = display.encodeDigit(0); 
+  data[2] = display.encodeDigit(0);
+  data[3] = display.encodeDigit(0);
+  
+  display.setSegments(data);
 }
 
 
 void loop()
 {
-  get_time();   //向伺服器取得目前設定點燃時間or指令(測試時請註解)
   count += 1;
+  count2 += 1;
 
   float t = dht.readTemperature();
   float h = dht.readHumidity();
-  
-  if(count == 20)
+  //Serial.println("test");
+  if(count2 == 20)
+  {
+    get_time();   //向伺服器取得目前設定點燃時間or指令(測試時請註解)
+    count2 = 0;
+  }
+  if(count == 120)
   {
     send_dht_temp(t);           //上傳溫度 濕度 pm2.5(dust)至中華電信IOT大平台
     send_dht_humi(h);

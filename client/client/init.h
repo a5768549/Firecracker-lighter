@@ -32,6 +32,7 @@ float concentration = 0;
 
 //timer flag init
 int count = 0;
+int count2 = 0;
 int btn_timer = 0;
 int btn_timer_enable = 0;
 int btn_timer_sec = 0;

@@ -12,6 +12,7 @@ String inData;
 //目前有BUG，內網無法使用，請用ngrok內網穿透後再使用。
 char server[] = "projectgroup.team"; 
 String host   = "projectgroup.team";
+int port = 8080;
 
 char server_iot[] = "iot.cht.com.tw"; 
 String host_iot   = "iot.cht.com.tw";
@@ -33,10 +34,10 @@ void post_status(int _status)
   String json;
   serializeJson(post_data, json);
 
-  if (client.connect(server, 80)) 
+  if (client.connect(server, port)) 
   {
     Serial.println("connected");
-    client.println("POST /api.php HTTP/1.0");
+    client.println("POST /Firecracker/api.php HTTP/1.0");
     client.println("Host: " + host);
     client.println("Accept: */*");
     client.println("Content-Type: application/json");
@@ -57,11 +58,10 @@ void get_time()
 
   String json;
   serializeJson(post_data, json);
-
-  if (client.connect(server, 80)) 
+  if (client.connect(server, port)) 
   {
     Serial.println("connected");
-    client.println("POST /api.php HTTP/1.0");
+    client.println("POST /Firecracker/api.php HTTP/1.0");
     client.println("Host: " + host);
     client.println("Accept: */*");
     client.println("Content-Type: application/json");
