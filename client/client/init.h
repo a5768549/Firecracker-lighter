@@ -31,7 +31,15 @@ float concentration = 0;
 
 //timer flag init
 int count = 0;
+<<<<<<< Updated upstream
 int count2= 0;
+=======
+<<<<<<< HEAD
+int count2= 0;
+=======
+int count2 = 0;
+>>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
+>>>>>>> Stashed changes
 int btn_timer = 0;
 int btn_timer_enable = 0;
 int btn_timer_sec = 0;

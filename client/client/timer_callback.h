@@ -26,11 +26,33 @@ void dust()
   }
 }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 void IRAM_ATTR TimerHandler0()
 {
   printLocalTime();
   
   Serial.println("local time:" + format_time);
+<<<<<<< Updated upstream
+=======
+=======
+  String format_mon  = "";
+  String format_day  = "";
+  String format_hour = "";
+  String format_min  = "";
+  String format_sec  = "";
+  int(mon)  < 10 ? format_mon  = "0"  + String(mon)  : format_mon  = String(mon);
+  int(mday) < 10 ? format_day  = "0"  + String(mday) : format_day  = String(mday);
+  int(hour) < 10 ? format_hour = "0"  + String(hour) : format_hour = String(hour);
+  int(min)  < 10 ? format_min  = "0"  + String(min)  : format_min  = String(min);
+  int(sec)  < 10 ? format_sec  = "0"  + String(sec)  : format_sec  = String(sec);
+
+  format_time = String(year) + "-" + format_mon + "-" + format_day + " " + format_hour + ":" + format_min + ":" + format_sec;
+  //Serial.println("local time:" + format_time);
+>>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
+>>>>>>> Stashed changes
 
   if(btn_timer_enable == 1)
   {
@@ -39,6 +61,15 @@ void IRAM_ATTR TimerHandler0()
     if(btn_timer_sec == 0)
     {
       flag = 1;
+      uint8_t data[] = { 0xff, 0xff, 0xff, 0xff };
+      data[0] = display.encodeDigit(0);
+      data[1] = display.encodeDigit(0); 
+      data[2] = display.encodeDigit(0);
+      data[3] = display.encodeDigit(0);
+      
+      display.setSegments(data);
+      btn_timer_enable = 0;
+      btn_timer = 0;
     }
 
     int min1 = (btn_timer_sec / 60) / 10;

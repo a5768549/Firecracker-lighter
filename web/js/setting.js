@@ -49,7 +49,7 @@ function timeset(device)
 
     var data = {'timeValue': timeValue , 'ID' : device};
 
-    fetch('../api/timeset-api.php', {
+    fetch('../Firecracker/api/timeset-api.php', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: new Headers({
@@ -66,7 +66,7 @@ function timecancel(device)
 
     var data = {'timeValue': time , 'ID' : device};
 
-    fetch('../api/timeset-api.php', {
+    fetch('../Firecracker/api/timeset-api.php', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: new Headers({
@@ -83,7 +83,7 @@ function burn(device)
 
     var data = {'timeValue': time , 'ID' : device};
 
-    fetch('../api/timeset-api.php', {
+    fetch('../Firecracker/api/timeset-api.php', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: new Headers({
@@ -96,7 +96,7 @@ function burn(device)
 
 function homePageInit() 
 {
-    fetch('../api/index-api.php')
+    fetch('../Firecracker/api/index-api.php')
     .then(res => 
     {
         return res.json();

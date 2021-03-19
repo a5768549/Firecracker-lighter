@@ -7,10 +7,10 @@ $mysql_conn_host = "localhost";
 $mysql_conn_dbname = "firecracker";
 
 /** @var string mysql 帳號 */
-$mysql_conn_account = "root";
+$mysql_conn_account = "********";
 
 /** @var string mysql 密碼 */
-$mysql_conn_password = "Aa970236";
+$mysql_conn_password = "********";
 
 /** @var PDO mysql 連線 */
 $con = new PDO(
