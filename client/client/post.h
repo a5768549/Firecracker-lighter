@@ -10,17 +10,7 @@
 String inData;
 
 //目前有BUG，內網無法使用，請用ngrok內網穿透後再使用。
-<<<<<<< Updated upstream
 String host   = "http://projectgroup.team:8080/Firecracker/";
-=======
-<<<<<<< HEAD
-String host   = "http://projectgroup.team:8080/Firecracker/";
-=======
-char server[] = "projectgroup.team"; 
-String host   = "projectgroup.team";
-int port = 8080;
->>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
->>>>>>> Stashed changes
 
 char server_iot[] = "iot.cht.com.tw"; 
 String host_iot   = "iot.cht.com.tw";
@@ -43,10 +33,6 @@ void post_status(int _status)
   String json;
   serializeJson(post_data, json);
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   http.begin(host + "api.php");
   int httpCode = http.POST(json);
  
@@ -57,28 +43,8 @@ void post_status(int _status)
     Serial.println("status " + payload);
   }
   else 
-<<<<<<< Updated upstream
   {
     Serial.println("Error on HTTP request");
-=======
-  {
-    Serial.println("Error on HTTP request");
-=======
-  if (client.connect(server, port)) 
-  {
-    Serial.println("connected");
-    client.println("POST /Firecracker/api.php HTTP/1.0");
-    client.println("Host: " + host);
-    client.println("Accept: */*");
-    client.println("Content-Type: application/json");
-    client.print  ("Content-Length: ");
-    client.println(json.length());
-    client.println();
-    client.print  (json);
-    client.println("Connection: close");
-    delay(10);
->>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
->>>>>>> Stashed changes
   }
   http.end();
 }
@@ -91,39 +57,11 @@ void get_time()
 
   String json;
   serializeJson(post_data, json);
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   
   http.begin(host + "api.php");
   int httpCode = http.POST(json);
  
   if (httpCode > 0) 
-<<<<<<< Updated upstream
-=======
-=======
-  if (client.connect(server, port)) 
-  {
-    Serial.println("connected");
-    client.println("POST /Firecracker/api.php HTTP/1.0");
-    client.println("Host: " + host);
-    client.println("Accept: */*");
-    client.println("Content-Type: application/json");
-    client.print  ("Content-Length: ");
-    client.println(json.length());
-    client.println();
-    client.print  (json);
-    client.println("Connection: close");
-    delay(100);
-  }
-}
-
-void send_dht_temp(float value)
-{
-  if(value == 0)
->>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
->>>>>>> Stashed changes
   {
     String payload = http.getString();
     //Serial.println(httpCode);

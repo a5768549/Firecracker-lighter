@@ -4,7 +4,7 @@
  *
  * GitHub Project：https://github.com/a5768549/Firecracker-lighter
  */
-
+ 
 #include "config.h"
 #include "init.h"
 #include "post.h"
@@ -33,52 +33,19 @@ void setup()
   Serial.println("RTC讀取成功");
   
   digitalWrite(trigger,HIGH);
-<<<<<<< Updated upstream
   display.setBrightness(0x0F);
-=======
-<<<<<<< HEAD
-  display.setBrightness(0x0F);
-=======
-  display.setBrightness(0x0f);
-
-  uint8_t data[] = { 0xff, 0xff, 0xff, 0xff };
-  data[0] = display.encodeDigit(0);
-  data[1] = display.encodeDigit(0); 
-  data[2] = display.encodeDigit(0);
-  data[3] = display.encodeDigit(0);
-  
-  display.setSegments(data);
->>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
->>>>>>> Stashed changes
 }
 
 
 void loop()
 {
   count += 1;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   count2+= 1;
   float t = dht.readTemperature();
   float h = dht.readHumidity();
 
   Serial.println(digitalRead(button));
   if(count == 20)
-=======
-  count2 += 1;
-
-  float t = dht.readTemperature();
-  float h = dht.readHumidity();
-  //Serial.println("test");
-  if(count2 == 20)
-  {
-    get_time();   //向伺服器取得目前設定點燃時間or指令(測試時請註解)
-    count2 = 0;
-  }
-  if(count == 120)
->>>>>>> 60ed33e977b9032ed9f52b27f44795c55f1aac6f
   {
     send_dht_temp(t,h,concentration);           //上傳溫度 濕度 pm2.5(dust)至中華電信IOT大平台
     count = 0;
