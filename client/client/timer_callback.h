@@ -5,29 +5,31 @@
  * GitHub Project：https://github.com/a5768549/Firecracker-lighter
  */
  
-LTimer timer0(LTIMER_0);
-LTimer timer1(LTIMER_1);
+ESP32Timer ITimer0(0);
+ESP32Timer ITimer1(1);
 
-void _callback0(void *usr_data)
+#define TIMER0_INTERVAL_MS 1000
+#define TIMER1_INTERVAL_MS 1000
+
+void dust()
 {
-  if (!rtc.getDateTime(&hour, &min, &sec, &mday, &mon, &year, &wday)) 
+  duration = pulseIn(dust_sensor, LOW);
+  lowpulseoccupancy = lowpulseoccupancy+duration;
+  //Serial.println(concentration);
+  if ((millis()-starttime) > sampletime_ms)//if the sample time == 30s
   {
-    Serial.println(F("Read date/time failed"));
-    return;
+    ratio = lowpulseoccupancy/(sampletime_ms*10.0);  // Integer percentage 0=>100
+    concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // using spec sheet curve
+    //Serial.println(concentration);
+    lowpulseoccupancy = 0;
+    starttime = millis();
   }
+}
 
-  String format_mon  = "";
-  String format_day  = "";
-  String format_hour = "";
-  String format_min  = "";
-  String format_sec  = "";
-  int(mon)  < 10 ? format_mon  = "0"  + String(mon)  : format_mon  = String(mon);
-  int(mday) < 10 ? format_day  = "0"  + String(mday) : format_day  = String(mday);
-  int(hour) < 10 ? format_hour = "0"  + String(hour) : format_hour = String(hour);
-  int(min)  < 10 ? format_min  = "0"  + String(min)  : format_min  = String(min);
-  int(sec)  < 10 ? format_sec  = "0"  + String(sec)  : format_sec  = String(sec);
-
-  format_time = String(year) + "-" + format_mon + "-" + format_day + " " + format_hour + ":" + format_min + ":" + format_sec;
+void IRAM_ATTR TimerHandler0()
+{
+  printLocalTime();
+  
   Serial.println("local time:" + format_time);
 
   if(btn_timer_enable == 1)
@@ -55,25 +57,23 @@ void _callback0(void *usr_data)
   }
 }
 
-void _callback1(void *usr_data)
-{
-  duration = pulseIn(dust_sensor, LOW);
-  lowpulseoccupancy = lowpulseoccupancy+duration;
-
-  if ((millis()-starttime) > sampletime_ms)//if the sample time == 30s
-  {
-    ratio = lowpulseoccupancy/(sampletime_ms*10.0);  // Integer percentage 0=>100
-    concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // using spec sheet curve
-    Serial.println(concentration);
-    lowpulseoccupancy = 0;
-    starttime = millis();
-  }
-}
+//void IRAM_ATTR TimerHandler1()
+//{
+//  duration = pulseIn(dust_sensor, LOW);
+//  lowpulseoccupancy = lowpulseoccupancy+duration;
+//  Serial.println(concentration);
+//  if ((millis()-starttime) > sampletime_ms)//if the sample time == 30s
+//  {
+//    ratio = lowpulseoccupancy/(sampletime_ms*10.0);  // Integer percentage 0=>100
+//    concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // using spec sheet curve
+//    Serial.println(concentration);
+//    lowpulseoccupancy = 0;
+//    starttime = millis();
+//  }
+//}
 
 void timer_init()
 {
-  timer0.begin();
-  timer0.start(1000, LTIMER_REPEAT_MODE, _callback0, NULL);
-  timer1.begin();
-  timer1.start(100, LTIMER_REPEAT_MODE, _callback1, NULL);
+  ITimer0.attachInterruptInterval(TIMER0_INTERVAL_MS * 1000, TimerHandler0);
+  //ITimer1.attachInterruptInterval(TIMER1_INTERVAL_MS * 1000, TimerHandler1);
 }

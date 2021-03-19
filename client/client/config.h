@@ -6,29 +6,27 @@
  */
  
 //7697沒有包進snprintf指令，所以必須使用Erriez的lib，不能用平常的lib。
-#include <ErriezDS1302.h>
 #include <TM1637Display.h>
 #include <IRremote.h>
-#include <Regexp.h>
-#include <LWiFi.h>
-#include "LTimer.h"
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <WiFiClientSecure.h>
+#include "ESP32TimerInterrupt.h"
 #include "DHT.h"
+#include "time.h"
 
-#define trigger   3            //電熱絲觸發腳
-#define button    5            //按鈕
-#define button2   4            //按鈕2
-#define RECV_PIN  9            //IR
-#define DS1302_CLK_PIN     7   //RTC
-#define DS1302_DAT_PIN     6
-#define DS1302_RST_PIN     8
-#define DHTPIN             12  //DHT
+#define trigger   21            //電熱絲觸發腳
+#define button    25            //按鈕
+#define button2   26            //按鈕2
+#define RECV_PIN  35            //IR
+#define DHTPIN             5  //DHT
 #define DHTTYPE            DHT11
-#define Seg7_CLK           13  //SEG7
-#define Seg7_DIO           14
-#define dust_sensor        2   //Dust_Sensor
+#define Seg7_CLK           22  //SEG7
+#define Seg7_DIO           23
+#define dust_sensor        17   //Dust_Sensor
 
-char _lwifi_ssid[] = "MaxPro";
-char _lwifi_pass[] = "12345678";
+const char* ssid     = "MaxPro";
+const char* password = "12345678";
 
 /**********************************
  * IR 數值
